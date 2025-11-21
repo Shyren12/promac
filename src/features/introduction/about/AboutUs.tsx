@@ -1,5 +1,5 @@
 import { CheckCircle, Users, ShieldCheck, Zap } from "lucide-react"; // Icons đại diện
-import { inan } from "../../assets";
+import { inan } from "../../../assets";
 
 export const AboutUs = () => {
   return (

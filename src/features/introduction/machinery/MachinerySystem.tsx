@@ -38,18 +38,12 @@ export const MachinerySystem = () => {
         className="grid grid-cols-3"
         style={{
           width: "1280px",
-          // Tính toán Gap:
-          // Tổng width: 411 * 3 = 1233px. Space dư: 1280 - 1233 = 47px.
-          // Gap giữa 2 cột: 47 / 2 ≈ 23.5px.
-          // Gap giữa 2 hàng: 4349 (Top Row 2) - 3860 (Top Row 1) - 421 (Height) = 68px.
+
           columnGap: "23.5px",
           rowGap: "68px",
         }}
       >
         {MACHINES.map((_, index) => {
-          // LOGIC OPACITY:
-          // Các item ở giữa (index 1, 4) có opacity 0.8 (Đậm hơn)
-          // Các item 2 bên (0, 2, 3, 5) có opacity 0.5
           const isMiddleItem = index % 3 === 1;
           const overlayOpacity = isMiddleItem ? 0.8 : 0.5;
 
@@ -76,9 +70,7 @@ export const MachinerySystem = () => {
               </div>
 
               {/* --- 2. TINT (Lớp phủ màu đen) --- 
-                        Background: #0B0706
-                        Opacity: 0.5 hoặc 0.8
-                        Radius: 12px
+                      
                     */}
               <div
                 className="absolute top-0 left-0 w-full h-full transition-opacity duration-300 hover:opacity-30" // Hiệu ứng hover cho đẹp
