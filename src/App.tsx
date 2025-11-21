@@ -1,37 +1,22 @@
-import { Header } from "./components/layout/Header";
-import { IntroductionHero } from "./features/intro/IntroductionHero";
-import { AboutUs } from "./features/about/AboutUs";
-import { History } from "./features/history/History";
-import { OurTeam } from "./features/team/OurTeam"; // <--- Import mới
-import { MachinerySystem } from "./features/machinery/MachinerySystem";
+// src/App.tsx
+import { Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { IntroPage } from "./pages/IntroPage";
 
 function App() {
   return (
     <main className="min-h-screen w-full bg-black flex justify-center overflow-x-hidden pb-20">
-      <div
-        className="relative bg-white"
-        style={{ width: "1440px", minHeight: "100vh" }}
-      >
-        <Header />
+      {/* KHU VỰC ĐỊNH TUYẾN (ROUTING) */}
+      <Routes>
+        {/* 1. Trang Chủ (Mặc định) */}
+        <Route path="/" element={<HomePage />} />
 
-        <IntroductionHero />
+        {/* 2. Trang Giới Thiệu (Khi bấm Về Promac) */}
+        <Route path="/gioi-thieu" element={<IntroPage />} />
 
-        <div style={{ marginTop: "114px" }}>
-          <AboutUs />
-        </div>
-
-        <div style={{ marginTop: "40px" }}>
-          <History />
-        </div>
-
-        {/* --- PHẦN ĐỘI NGŨ --- */}
-        <div>
-          <OurTeam />
-        </div>
-        <div style={{ marginTop: "22px" }}>
-          <MachinerySystem />
-        </div>
-      </div>
+        {/* Các trang khác chưa làm thì để tạm HomePage hoặc trang 404 */}
+        <Route path="*" element={<HomePage />} />
+      </Routes>
     </main>
   );
 }

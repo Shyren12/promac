@@ -1,14 +1,22 @@
+// src/components/layout/Header.tsx
 import { ChevronDown } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { NavLink } from "react-router-dom"; // <--- IMPORT NavLink
 
 const NAV_ITEMS = [
-  { label: "TRANG CHỦ", isActive: true },
-  { label: "DỊCH VỤ & SẢN PHẨM", hasArrow: true },
-  { label: "CHÍNH SÁCH", hasArrow: true },
-  { label: "DỰ ÁN", hasArrow: false },
-  { label: "VỀ PROMAC", hasArrow: false },
-  { label: "TIN TỨC", hasArrow: false },
-  { label: "LIÊN HỆ", hasArrow: false },
+  // path: "/" là trang chủ
+  { label: "TRANG CHỦ", path: "/", hasArrow: false },
+
+  // Các mục chưa có trang thì tạm để path="/" hoặc "#"
+  { label: "DỊCH VỤ & SẢN PHẨM", path: "/dich-vu", hasArrow: true },
+  { label: "CHÍNH SÁCH", path: "/chinh-sach", hasArrow: true },
+  { label: "DỰ ÁN", path: "/du-an", hasArrow: false },
+
+  // path: "/gioi-thieu" là trang IntroPage mình vừa làm
+  { label: "VỀ PROMAC", path: "/gioi-thieu", hasArrow: false },
+
+  { label: "TIN TỨC", path: "/tin-tuc", hasArrow: false },
+  { label: "LIÊN HỆ", path: "/lien-he", hasArrow: false },
 ];
 
 export const Header = () => {
@@ -24,10 +32,8 @@ export const Header = () => {
           paddingBottom: "40px",
           paddingLeft: "93px",
           paddingRight: "93px",
-          boxShadow: "0px 4px 12px 0px #00000040", // Hex shadow
-
-          // CANH VỊ TRÍ TRONG KHUNG 1440PX:
-          marginLeft: "3px", // Left: 3px
+          boxShadow: "0px 4px 12px 0px #00000040",
+          marginLeft: "3px",
         }}
       >
         <nav
@@ -38,42 +44,47 @@ export const Header = () => {
           }}
         >
           {NAV_ITEMS.map((item, index) => (
-            <a
+            <NavLink
               key={index}
-              href="#"
-              className={cn(
-                // --- CẬP NHẬT STYLE CHỮ CHUẨN FIGMA ---
-                "flex items-center justify-center", // align-items: center; text-align: center;
-                "font-inter font-bold", // font-family: Inter; font-weight: 700;
-                "text-[18px]", // font-size: 18px;
-                "leading-[100%]", // line-height: 100%; (Quan trọng)
-                "tracking-[0px]", // letter-spacing: 0%;
+              to={item.path} // Dùng props to thay cho href
+              // NavLink cung cấp biến isActive tự động
+              className={({ isActive }) =>
+                cn(
+                  "flex items-center justify-center",
+                  "font-inter font-bold",
+                  "text-[18px]",
+                  "leading-[100%]",
+                  "tracking-[0px]",
+                  "transition-colors duration-200",
 
-                "transition-colors duration-200",
-
-                item.isActive
-                  ? "text-[#FF0000] underline decoration-solid"
-                  : "text-[#000000] hover:text-[#FF0000] no-underline"
-              )}
+                  // LOGIC TỰ ĐỘNG:
+                  // Nếu đang ở trang đó (isActive = true) -> Màu Đỏ + Gạch chân
+                  // Nếu không -> Màu Đen + Hover Đỏ
+                  isActive
+                    ? "text-[#FF0000] underline decoration-solid"
+                    : "text-[#000000] hover:text-[#FF0000] no-underline"
+                )
+              }
               style={{ gap: "5px" }}
             >
-              {/* Text */}
-              <span className="block pt-[2px]">
-                {" "}
-                {/* Hack nhỏ để font Inter căn giữa quang học tốt hơn nếu cần */}
-                {item.label}
-              </span>
+              {/* Dùng render prop để lấy isActive cho icon mũi tên */}
+              {({ isActive }) => (
+                <>
+                  <span className="block pt-[2px]">{item.label}</span>
 
-              {item.hasArrow && (
-                <div className="w-[20px] h-[20px] flex items-center justify-center">
-                  <ChevronDown
-                    size={20}
-                    color={item.isActive ? "#FF0000" : "#000000"}
-                    strokeWidth={2} // Độ dày nét icon
-                  />
-                </div>
+                  {item.hasArrow && (
+                    <div className="w-[20px] h-[20px] flex items-center justify-center">
+                      <ChevronDown
+                        size={20}
+                        // Icon cũng đổi màu theo trạng thái Active
+                        color={isActive ? "#FF0000" : "#000000"}
+                        strokeWidth={2}
+                      />
+                    </div>
+                  )}
+                </>
               )}
-            </a>
+            </NavLink>
           ))}
         </nav>
       </header>
