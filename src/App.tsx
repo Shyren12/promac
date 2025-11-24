@@ -5,6 +5,7 @@ import { Footer } from "./components/layout/Footer";
 import { HomePage } from "./pages/HomePage";
 import { IntroPage } from "./pages/IntroPage";
 import { ContactPage } from "./pages/ContactPage";
+import { NewsPage } from "./pages/NewsPage";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/gioi-thieu" element={<IntroPage />} />
             <Route path="/lien-he" element={<ContactPage />} />
+            <Route path="/tin-tuc" element={<NewsPage />} />
+            {/* <--- Route mới */}
           </Routes>
         </div>
 

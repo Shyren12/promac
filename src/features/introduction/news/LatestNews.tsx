@@ -1,5 +1,3 @@
-import { ArrowRight } from "lucide-react";
-
 // --- IMPORT ẢNH TIN TỨC ---
 import news1 from "../../../assets/news/news1.png";
 import news2 from "../../../assets/news/news2.png";
@@ -55,8 +53,7 @@ export const LatestNews = () => {
           {NEWS_DATA.map((news) => (
             <div
               key={news.id}
-              className="flex flex-col items-start"
-              style={{ width: "380px" }}
+              className="flex flex-col w-[380px] group cursor-pointer"
             >
               {/* Thumbnail */}
               <div
@@ -105,24 +102,40 @@ export const LatestNews = () => {
                 {news.desc}
               </p>
 
-              {/* Read More Link */}
-              <a href="#" className="flex items-center gap-[8px] group w-fit">
-                {/* Container riêng cho Text + Gạch chân */}
-                <div className="relative flex flex-col">
-                  <span className="font-inter font-bold text-[16px] text-[#FF0000]">
-                    Đọc ngay
-                  </span>
-                  {/* Line gạch chân: Mặc định w-0, khi group hover -> w-full */}
-                  <div className="h-[2px] bg-[#FF0000] w-0 group-hover:w-full transition-all duration-300 mt-[1px]"></div>
-                </div>
+              {/* Button: Đọc ngay */}
+              <div className="flex items-center gap-[8px] group/btn">
+                <span className="font-inter font-bold text-[16px] text-[#FF0000] leading-[19px]">
+                  Đọc ngay
+                </span>
 
-                <ArrowRight
-                  size={18}
-                  color="#FF0000"
-                  strokeWidth={3}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </a>
+                {/* Icon Mũi tên đỏ custom (Vẽ bằng SVG để giống Figma nhất) */}
+                <div className="relative w-[18px] h-[10px] flex items-center transition-transform group-hover/btn:translate-x-1">
+                  <svg
+                    width="18"
+                    height="10"
+                    viewBox="0 0 18 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5H17"
+                      stroke="#FF0000"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M13 1L17 5L13 9"
+                      stroke="#FF0000"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {/* Gạch chân đỏ (Line 8) */}
+              <div className="w-[136px] h-[1px] bg-[#FF0000] mt-[2px]" />
             </div>
           ))}
         </div>
