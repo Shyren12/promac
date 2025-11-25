@@ -1,14 +1,14 @@
-import { HomeBanner } from "../features/home/HomeBanner"; // <--- IMPORT
-import { HomeExperience } from "../features/home/HomeExperience";
-import { HomeNews } from "../features/home/HomeNews";
-import { HomeProcess } from "../features/home/HomeProcess";
-import { HomeProducts } from "../features/home/HomeProducts";
-import { HomeServices } from "../features/home/HomeServices";
-import { HomeStory } from "../features/home/HomeStory";
-import { HomeTestimonials } from "../features/home/HomeTestimonials";
-import { HomeWelcome } from "../features/home/HomeWelcome";
-import { HomeWhyChoose } from "../features/home/HomeWhyChoose";
-import { ContactBanner } from "./../components/layout/ContactBanner";
+import { HomeBanner } from "../../features/home/HomeBanner"; // <--- IMPORT
+import { HomeExperience } from "../../features/home/HomeExperience";
+import { HomeNews } from "../../features/home/HomeNews";
+import { HomeProcess } from "../../features/home/HomeProcess";
+import { HomeProducts } from "../../features/home/HomeProducts";
+import { HomeServices } from "../../features/home/HomeServices";
+import { HomeStory } from "../../features/home/HomeStory";
+import { HomeTestimonials } from "../../features/home/HomeTestimonials";
+import { HomeWelcome } from "../../features/home/HomeWelcome";
+import { HomeWhyChoose } from "../../features/home/HomeWhyChoose";
+import { ContactBanner } from "../../components/layout/ContactBanner";
 
 export const HomePage = () => {
   return (

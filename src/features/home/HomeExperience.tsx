@@ -1,16 +1,15 @@
 // DỮ LIỆU DỰ ÁN
 const PROJECTS = [
-  // Row 1
   { title: "Onça", author: "" },
   { title: "VARNE", author: "" },
   { title: "Sunday Best & Someday Studio for BEETL", author: "" },
   { title: "cool fish", author: "" },
-  // Row 2
+
   { title: "NANTES MURAL", author: "" },
   { title: "VOGUE ARABIA 2023", author: "" },
   { title: "NEVER SETTLE – FREELETICS AD 2021", author: "" },
   { title: "Arab Character Design", author: "" },
-  // Row 3
+
   { title: "Bagel - Metascale", author: "" },
   { title: "Domo - Brand Identity", author: "" },
   { title: "TV Show Duos", author: "" },

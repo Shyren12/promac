@@ -15,6 +15,7 @@ export default {
         lexend: ['"Lexend Deca"', "sans-serif"],
         lato: ["Lato", "sans-serif"],
         manrope: ["Manrope", "sans-serif"],
+        quicksand: ["Quicksand", "sans-serif"],
       },
       boxShadow: {
         // Shadow chính xác: 0px 4px 12px 0px #00000040 (40 hex = 25%)
