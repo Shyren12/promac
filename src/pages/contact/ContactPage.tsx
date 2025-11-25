@@ -1,6 +1,6 @@
 import React from "react";
-import { ContactHero } from "../features/contact/ContactHero";
-import { ContactForm } from "../features/contact/ContactForm";
+import { ContactHero } from "../../features/contact/ContactHero";
+import { ContactForm } from "../../features/contact/ContactForm";
 
 export const ContactPage: React.FC = () => {
   return (

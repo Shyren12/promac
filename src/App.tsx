@@ -2,10 +2,13 @@
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
-import { HomePage } from "./pages/HomePage";
-import { IntroPage } from "./pages/IntroPage";
-import { ContactPage } from "./pages/ContactPage";
-import { NewsPage } from "./pages/NewsPage";
+import { HomePage } from "./pages/home/HomePage";
+import { IntroPage } from "./pages/intro/IntroPage";
+import { ContactPage } from "./pages/contact/ContactPage";
+import { NewsPage } from "./pages/news/NewsPage";
+import { NewsDetailPage } from "./pages/news/NewsDetailPage";
+import { ProjectPage } from "./pages/project/ProjectPage";
+import { ProjectDetailPage } from "./pages/project/ProjectDetailPage";
 
 function App() {
   return (
@@ -27,7 +30,9 @@ function App() {
             <Route path="/gioi-thieu" element={<IntroPage />} />
             <Route path="/lien-he" element={<ContactPage />} />
             <Route path="/tin-tuc" element={<NewsPage />} />
-            {/* <--- Route mới */}
+            <Route path="/tin-tuc/:slug" element={<NewsDetailPage />} />{" "}
+            <Route path="/du-an" element={<ProjectPage />} />
+            <Route path="/du-an/:slug" element={<ProjectDetailPage />} />
           </Routes>
         </div>
 

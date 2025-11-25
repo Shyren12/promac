@@ -1,29 +1,31 @@
+// File: src/features/projects/listing/ProjectListing.tsx
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // <--- 1. IMPORT useNavigate
-import { NewsSearchFilter } from "./NewsSearchFilter";
+import { useNavigate } from "react-router-dom";
+import { ProjectSearchFilter } from "./ProjectSearchFilter";
 
-// Dữ liệu giả (Thêm trường slug để URL đẹp hơn)
-const NEWS_DATA = Array.from({ length: 32 }).map((_, i) => ({
+// Dữ liệu giả: 26 Dự án
+const PROJECT_DATA = Array.from({ length: 26 }).map((_, i) => ({
   id: i + 1,
-  date: "22 July 2024",
-  readTime: "Read 4 min",
-  title: `Bài viết số ${i + 1}: Our SaaS Product Just Launched!`,
-  slug: `bai-viet-so-${i + 1}`, // Slug cho URL
-  desc: "Remote work has drastically improved my design skills...",
+  date: "August 2024", // Dự án thường dùng tháng/năm hoàn thành
+  client: "Vinamilk Corp", // Dự án thường có tên khách hàng
+  title: `Dự án số ${i + 1}: Thiết kế bao bì hộp sữa cao cấp`,
+  slug: `du-an-so-${i + 1}`,
+  desc: "Dự án thiết kế và in ấn bao bì hộp cứng 5 lớp với công nghệ in UV định hình...",
   image: "bg-gray-200",
-  tag: i % 2 === 0 ? "In ấn" : "Voucher",
+  tag: i % 2 === 0 ? "Bao bì" : "In ấn",
 }));
 
-const ITEMS_PER_PAGE = 15;
+// QUY ĐỊNH: 3 Cột x 4 Hàng = 12 Items
+const ITEMS_PER_PAGE = 12;
 
-export const NewsListing: React.FC = () => {
+export const ProjectListing: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const navigate = useNavigate(); // <--- 2. HOOK ĐIỀU HƯỚNG
+  const navigate = useNavigate();
 
-  // Logic lọc & phân trang (Giữ nguyên)
-  const filteredNews = NEWS_DATA.filter((item) => {
+  // 1. Filter Logic
+  const filteredProjects = PROJECT_DATA.filter((item) => {
     if (!searchTerm || searchTerm === "Tất cả") return true;
     const lowerTerm = searchTerm.toLowerCase();
     return (
@@ -32,9 +34,10 @@ export const NewsListing: React.FC = () => {
     );
   });
 
-  const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
+  // 2. Pagination Logic
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentNews = filteredNews.slice(
+  const currentProjects = filteredProjects.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
@@ -51,53 +54,61 @@ export const NewsListing: React.FC = () => {
     setCurrentPage(1);
   };
 
-  // --- 3. HÀM CHUYỂN HƯỚNG SANG TRANG CHI TIẾT ---
   const goToDetail = (slug: string) => {
-    // Chuyển hướng đến: /tin-tuc/bai-viet-so-1
-    navigate(`/tin-tuc/${slug}`);
-    // Và cuộn lên đầu trang cho trải nghiệm tốt
+    navigate(`/du-an/${slug}`); // Route sang chi tiết dự án
     window.scrollTo(0, 0);
   };
 
+  // Style nút phân trang (Shared)
+  const navBtnStyle = (disabled: boolean) => `
+    flex items-center justify-center gap-[4px] h-[40px] rounded-[10px] transition-all border
+    ${
+      disabled
+        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+        : "border-[#828282] text-[#7D7D7D] hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white cursor-pointer"
+    }
+  `;
+
   return (
     <section className="w-full flex flex-col items-center">
-      {/* Title & Search (Giữ nguyên) */}
+      {/* TITLE */}
       <div className="flex flex-col items-center text-center mt-[100px] mb-[80px] w-[1074px]">
         <h2
           className="font-bold text-[#0E0E0E]"
           style={{ fontFamily: "Inter", fontSize: "56px", lineHeight: "140%" }}
         >
-          Trung Tâm Kiến Thức
+          Danh mục dự án
         </h2>
         <p
           className="font-semibold text-[#000000] mt-[20px]"
           style={{ fontFamily: "Inter", fontSize: "20px", lineHeight: "24px" }}
         >
           Khám phá danh mục sản phẩm đa dạng của chúng tôi, thể hiện chất lượng
-          in ấn vượt trội trên nhiều lĩnh vực và ngành nghề khác nhau.{" "}
+          in ấn vượt trội trên nhiều lĩnh vực và ngành nghề khác nhau.
         </p>
       </div>
 
+      {/* SEARCH */}
       <div className="mb-[100px]">
-        <NewsSearchFilter onSearch={handleSearchFilter} />
+        <ProjectSearchFilter onSearch={handleSearchFilter} />
       </div>
 
-      {/* Grid Section */}
+      {/* GRID (3 Cột) */}
       <div
         className="grid grid-cols-3 mb-[100px]"
         style={{ width: "1318px", columnGap: "22px", rowGap: "50px" }}
       >
-        {currentNews.length > 0 ? (
-          currentNews.map((item) => (
+        {currentProjects.length > 0 ? (
+          currentProjects.map((item) => (
             <div
               key={item.id}
               className="flex flex-col w-[380px] group cursor-pointer"
-              onClick={() => goToDetail(item.slug)} // <--- 4. GẮN SỰ KIỆN CLICK VÀO CARD
+              onClick={() => goToDetail(item.slug)}
             >
               {/* Thumbnail */}
               <div className="w-full h-[268px] bg-[#F2F2F2] rounded-[4px] mb-[20px] relative overflow-hidden">
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                  <span className="text-gray-400">Image {item.id}</span>
+                  <span className="text-gray-400">Project {item.id}</span>
                 </div>
               </div>
 
@@ -109,11 +120,10 @@ export const NewsListing: React.FC = () => {
                   </span>
                   <span className="mx-1">|</span>
                   <span className="font-inter font-semibold text-[18px] text-[#4F4F4F]">
-                    {item.readTime}
+                    {item.client}
                   </span>
                 </div>
 
-                {/* Title có hover đỏ */}
                 <h3 className="font-inter font-medium text-[#000000] text-[24px] leading-[29px] mb-[12px] group-hover:text-[#FF0000] transition-colors">
                   {item.title}
                 </h3>
@@ -122,10 +132,9 @@ export const NewsListing: React.FC = () => {
                   {item.desc}
                 </p>
 
-                {/* Button Đọc Ngay */}
                 <div className="flex items-center gap-[8px] group/btn">
                   <span className="font-inter font-bold text-[16px] text-[#FF0000]">
-                    Đọc ngay
+                    Xem chi tiết
                   </span>
                   <div className="relative w-[18px] h-[10px] flex items-center transition-transform group-hover/btn:translate-x-1">
                     <svg
@@ -158,23 +167,18 @@ export const NewsListing: React.FC = () => {
           ))
         ) : (
           <div className="col-span-3 text-center text-gray-500 text-xl py-10">
-            Không tìm thấy bài viết nào phù hợp.
+            Không tìm thấy dự án nào.
           </div>
         )}
       </div>
 
-      {/* Pagination (Giữ nguyên style đã fix) */}
+      {/* PAGINATION */}
       {totalPages > 1 && (
         <div className="flex items-center gap-[32px] mb-[100px]">
           <button
             onClick={handlePrev}
             disabled={currentPage === 1}
-            className={`flex items-center justify-center gap-[4px] w-[115px] h-[40px] rounded-[10px] transition-all border
-                ${
-                  currentPage === 1
-                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "border-[#828282] text-[#7D7D7D] hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white cursor-pointer"
-                }`}
+            className={`${navBtnStyle(currentPage === 1)} w-[115px]`}
           >
             <ChevronLeft className="w-[16px] h-[16px]" />
             <span className="font-inter font-normal text-[14px]">Previous</span>
@@ -204,12 +208,7 @@ export const NewsListing: React.FC = () => {
           <button
             onClick={handleNext}
             disabled={currentPage === totalPages}
-            className={`flex items-center justify-center gap-[4px] w-[91px] h-[40px] border rounded-[10px] transition-all
-                ${
-                  currentPage === totalPages
-                    ? "border-gray-200 text-gray-300 cursor-not-allowed"
-                    : "border-[#828282] text-[#7D7D7D] hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white cursor-pointer"
-                }`}
+            className={`${navBtnStyle(currentPage === totalPages)} w-[91px]`}
           >
             <span className="font-inter font-normal text-[14px]">Next</span>
             <ChevronRight className="w-[16px] h-[16px]" />
