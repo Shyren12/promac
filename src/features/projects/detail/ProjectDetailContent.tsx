@@ -8,7 +8,7 @@ export const ProjectDetailContent: React.FC = () => {
           1. BREADCRUMB
           Logic: Home > Dự án > Tag (Bao bì) > Tên Dự Án
       ============================================================ */}
-      <div className="w-[1208px] flex items-center gap-[8px] mt-[21px] mb-[40px]">
+      <div className="w-[1299px] flex items-center gap-[8px] mt-[21px] mb-[40px]">
         <div className="flex items-center gap-[8px] text-[#8E8E8E]">
           <span className="font-inter text-[16px]">Trang chủ</span>
           <ChevronRight size={16} />

@@ -65,11 +65,21 @@ export const ServicesDropdown = () => {
 
   // Logic kiểm tra: Nếu URL hiện tại thuộc nhóm Dịch vụ thì Active
   const isActive = COLUMNS.some((col) =>
-    col.items.some((item) => item.path === location.pathname)
+    col.items.some((item) => {
+      // 1. Trùng khớp hoàn toàn (VD: đang ở trang danh mục /san-pham)
+      if (item.path === location.pathname) return true;
+
+      // 2. Là trang con (VD: đang ở /san-pham/chi-tiet-san-pham-a)
+      // Logic: Đường dẫn hiện tại bắt đầu bằng "path cha" + dấu "/"
+      // Ví dụ: "/san-pham/..." bắt đầu bằng "/san-pham/"
+      if (location.pathname.startsWith(`${item.path}/`)) return true;
+
+      return false;
+    })
   );
 
   return (
-    <Popover className="relative">
+    <Popover>
       {({ open }) => (
         <>
           {/* BUTTON TRIGGER */}
@@ -107,16 +117,22 @@ export const ServicesDropdown = () => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
+            {/* 2. CHỈNH SỬA VỊ TRÍ PANEL */}
             <PopoverPanel
               className="absolute z-50 bg-white"
               style={{
-                top: "62px",
-                left: "-370px",
-                width: "1434px",
+                // Header cao 102px -> Top = 102px để nằm ngay dưới đáy header
+                top: "102px",
+                // Left = 0 để bắt đầu từ mép trái của Header
+                left: "0px",
+                // Width = 100% để rộng bằng đúng Header (1434px)
+                width: "100%",
                 height: "280px",
                 borderTop: "1px solid #E3E7EF",
                 boxShadow: "0px 10px 20px rgba(0,0,0,0.05)",
                 padding: "30px 30px",
+                // Quan trọng: Để đảm bảo nó đè lên các thành phần khác
+                boxSizing: "border-box",
               }}
             >
               <div className="flex w-full h-full items-start justify-between">

@@ -8,7 +8,7 @@ export const NewsDetailContent: React.FC = () => {
           1. BREADCRUMB (Frame 12654)
           Logic: Home > Tin Tức > Tag (In Ấn) > Tên Bài Viết
       ============================================================ */}
-      <div className="w-[1208px] flex items-center gap-[8px] mt-[21px] mb-[40px]">
+      <div className="w-[1299px]  flex items-center gap-[8px] mt-[21px] mb-[40px]">
         {/* Home / 1299 */}
         <div className="flex items-center gap-[8px] text-[#8E8E8E]">
           <span className="font-inter text-[16px]">Trang chủ</span>
