@@ -1,7 +1,7 @@
 // src/pages/TermsOfServicePage.tsx
 import React from "react";
-import { TermsOfServiceHero } from "../../features/termsofservice/TermsOfServiceHero";
-import { TermsContent } from "../../features/termsofservice/TermsContent"; // <--- Import mới
+import { TermsOfServiceHero } from "../../features/policies/termsofservice/TermsOfServiceHero";
+import { TermsContent } from "../../features/policies/termsofservice/TermsContent"; // <--- Import mới
 
 export const TermsOfServicePage: React.FC = () => {
   return (

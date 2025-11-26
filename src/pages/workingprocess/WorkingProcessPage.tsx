@@ -1,6 +1,6 @@
 import React from "react";
-import { WorkingProcessHero } from "../../features/workingprocess/WorkingProcessHero";
-import { WorkingProcessContent } from "../../features/workingprocess/WorkingProcessContent";
+import { WorkingProcessHero } from "../../features/policies/workingprocess/WorkingProcessHero";
+import { WorkingProcessContent } from "../../features/policies/workingprocess/WorkingProcessContent";
 
 export const WorkingProcessPage: React.FC = () => {
   return (

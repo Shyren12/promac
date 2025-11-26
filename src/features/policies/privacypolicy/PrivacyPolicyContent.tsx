@@ -1,10 +1,11 @@
+// src/features/privacypolicy/PrivacyPolicyContent.tsx
 import React from "react";
 
 // --- IMPORT HÌNH ẢNH TỪ THƯ MỤC POLICY ---
-import policy1Img from "../../assets/policy/policy1.png";
-import policy2Img from "../../assets/policy/policy2.jpg";
-import policy4Img from "../../assets/policy/policy4.jpg";
-import policy6Img from "../../assets/policy/policy6.jpg";
+import policy1Img from "../../../assets/policy/policy1.png";
+import policy2Img from "../../../assets/policy/policy2.jpg";
+import policy4Img from "../../../assets/policy/policy4.jpg";
+import policy6Img from "../../../assets/policy/policy6.jpg";
 
 // Dữ liệu các điều khoản
 // Lưu ý: Tôi đã thêm dấu "-" vào trước các dòng cần hiển thị dấu chấm tròn (bullet point)
@@ -76,7 +77,7 @@ const TERMS_DATA = [
   },
 ];
 
-export const WorkingProcessContent: React.FC = () => {
+export const PrivacyPolicyContent: React.FC = () => {
   return (
     <section className="w-full flex justify-center pb-[100px]">
       <div
@@ -99,7 +100,7 @@ export const WorkingProcessContent: React.FC = () => {
             marginBottom: "60px",
           }}
         >
-          Quy Trình Làm Việc
+          Chính Sách Bảo Mật Thông Tin
         </h2>
 
         {/* List các điều khoản */}
