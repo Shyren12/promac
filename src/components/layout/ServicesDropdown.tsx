@@ -92,8 +92,6 @@ export const ServicesDropdown = ({ label }: ServicesDropdownProps) => {
   );
 
   return (
-    // 1. QUAN TRỌNG: XÓA className="relative" ở đây đi
-    // Để Panel nó định vị theo thẻ Header cha (vốn đã relative) chứ không theo nút này
     <Popover className="">
       {({ open }) => (
         <>
@@ -132,10 +130,9 @@ export const ServicesDropdown = ({ label }: ServicesDropdownProps) => {
             <PopoverPanel
               className="absolute z-50 bg-white"
               style={{
-                // 2. FIX VỊ TRÍ TUYỆT ĐỐI:
-                top: "102px", // Nằm ngay dưới Header
-                left: "0px", // Bắt đầu từ mép trái của Header
-                width: "1434px", // Rộng bằng Header
+                top: "102px",
+                left: "0px",
+                width: "1434px",
                 height: "280px",
                 borderTop: "1px solid #E3E7EF",
                 boxShadow: "0px 10px 20px rgba(0,0,0,0.05)",
@@ -143,10 +140,8 @@ export const ServicesDropdown = ({ label }: ServicesDropdownProps) => {
                 boxSizing: "border-box",
               }}
             >
-              {/* Thêm padding-left lớn hơn nếu là Chính Sách để căn giữa đẹp hơn */}
               <div
                 className="flex w-full h-full items-start gap-[60px]"
-                // Logic căn giữa: Nếu là Chính sách (ít cột) thì căn giữa, còn Dịch vụ thì căn start
                 style={{
                   justifyContent: label === "CHÍNH SÁCH" ? "center" : "center",
                 }}
