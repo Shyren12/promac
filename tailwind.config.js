@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         // Màu đỏ từ thiết kế Figma (#FF0000)
-        "promac-red": "#FF0000",
+        "pooootmac-red": "#FF0000",
         // Màu đen text (#000000)
         "promac-black": "#000000",
       },

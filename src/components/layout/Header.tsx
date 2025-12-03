@@ -17,7 +17,7 @@ type SubMenuGroup = {
 };
 
 const MOBILE_SUB_MENUS: Record<string, SubMenuGroup[]> = {
-  "DỊCH VỤ & SẢN PHẨM": [
+  "Dịch vụ & Sản phẩm": [
     {
       groupTitle: "DỊCH VỤ CỐT LÕI",
       items: [
@@ -54,7 +54,7 @@ const MOBILE_SUB_MENUS: Record<string, SubMenuGroup[]> = {
       bottomImage: qr,
     },
   ],
-  "CHÍNH SÁCH": [
+  "Chính sách": [
     {
       // Nhóm này không có tiêu đề, nhưng có QR Code ở cuối
       items: [
@@ -70,13 +70,13 @@ const MOBILE_SUB_MENUS: Record<string, SubMenuGroup[]> = {
 };
 
 const NAV_ITEMS = [
-  { label: "TRANG CHỦ", path: "/", type: "link" },
-  { label: "DỊCH VỤ & SẢN PHẨM", path: "#", type: "dropdown" },
-  { label: "CHÍNH SÁCH", path: "#", hasArrow: true, type: "dropdown" },
-  { label: "DỰ ÁN", path: "/du-an", type: "link" },
-  { label: "VỀ PROMAC", path: "/gioi-thieu", type: "link" },
-  { label: "TIN TỨC", path: "/tin-tuc", type: "link" },
-  { label: "LIÊN HỆ", path: "/lien-he", type: "link" },
+  { label: "Trang chủ", path: "/", type: "link" },
+  { label: "Dịch vụ & Sản phẩm", path: "#", type: "dropdown" },
+  { label: "Chính sách", path: "#", hasArrow: true, type: "dropdown" },
+  { label: "Dự án", path: "/du-an", type: "link" },
+  { label: "Về PROMAC", path: "/gioi-thieu", type: "link" },
+  { label: "Tin Tức", path: "/tin-tuc", type: "link" },
+  { label: "Liên Hệ", path: "/lien-he", type: "link" },
 ];
 
 export const Header = () => {
@@ -138,11 +138,11 @@ export const Header = () => {
         </button>
       </header>
 
-      {/* 2. DESKTOP HEADER (KHÔNG CÓ LOGO) */}
+      {/* 2. DESKTOP HEADER*/}
       <header className="hidden lg:flex items-center justify-between w-full max-w-[1434px] h-[102px] px-[93px] shadow-[0px_4px_12px_0px_#00000040]">
         <nav
           className="flex items-center"
-          style={{ marginLeft: "70px", gap: "40px" }}
+          style={{ marginLeft: "130px", gap: "40px" }}
         >
           {NAV_ITEMS.map((item, index) => {
             if (item.type === "dropdown")
