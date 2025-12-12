@@ -63,14 +63,6 @@ export const HomePage = () => {
         <HomeExperience />
       </div>
 
-      
-
-      {/* Testimonials */}
-      {/* Giữ nguyên */}
-      <div className="mt-[10px]">
-        <HomeTestimonials />
-      </div>
-
       {/* Products */}
       {/* Giữ nguyên */}
       <div className="mt-[30px]">
@@ -81,6 +73,12 @@ export const HomePage = () => {
       {/* Mobile: 50px | Tablet: 80px | Desktop: 100px */}
       <div className="mt-[50px] mb-[50px] md:mt-[80px] md:mb-[80px] lg:mt-[100px] lg:mb-[100px]">
         <HomeNews />
+      </div>
+
+      {/* Testimonials */}
+      {/* Giữ nguyên */}
+      <div className="mt-[10px]">
+        <HomeTestimonials />
       </div>
 
       {/* Contact Banner */}
